@@ -1,8 +1,10 @@
 import os
 import discord
+import pytz
 from discord.ext import commands
 from datetime import datetime
 from myserver import server_on
+
 
 intents = discord.Intents.default()
 intents.guilds = True  # เปิด intents สำหรับเหตุการณ์ในห้องเสียง
@@ -19,9 +21,8 @@ TEXT_CHANNEL_ID = 1300116422105501787  # แทนที่ด้วย ID ข�
 @bot.event
 async def on_voice_state_update(member, before, after):
     user_id = member.id
+    current_time = datetime.now(pytz.timezone('Asia/Bangkok'))
     channel = bot.get_channel(TEXT_CHANNEL_ID)  # รับช่องข้อความที่กำหนด
-
-    current_time = datetime.now()  # เวลาปัจจุบัน
 
     # แยกวันที่และเวลา
     date_str = current_time.strftime("%d-%m-%Y")
@@ -34,7 +35,7 @@ async def on_voice_state_update(member, before, after):
         await channel.send(message)  # ส่งข้อความไปยังช่องข้อความ
 
     elif before.channel is not None and after.channel is None:  # ออกจากห้องเสียง
-        leave_time = datetime.now()  # เวลาที่ออก
+        leave_time = datetime.now(pytz.timezone('Asia/Bangkok'))
         leave_date_str = leave_time.strftime("%d-%m-%Y")
         leave_time_str = leave_time.strftime("%H:%M:%S")
         
