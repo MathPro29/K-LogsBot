@@ -14,7 +14,7 @@ bot = commands.Bot(command_prefix="-", intents=intents)
 voice_log = {}
 
 # ID ของช่องข้อความที่คุณต้องการให้บอทส่งข้อความ
-TEXT_CHANNEL_ID = 1300105863683637288  # แทนที่ด้วย ID ของช่องข้อความ
+TEXT_CHANNEL_ID = 1300116422105501787  # แทนที่ด้วย ID ของช่องข้อความ
 
 @bot.event
 async def on_voice_state_update(member, before, after):
